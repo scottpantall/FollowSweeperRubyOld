@@ -41,6 +41,8 @@ if response.code == '200'
 	puts listOfIDs
 
 	lookup_path = "/1.1/users/lookup.json"
+	#print "Enter ID(s): "
+	#listOfIDs = gets
 	lookup_query = URI.encode_www_form("user_id" => listOfIDs)
 	lookup_address = URI("#{baseurl}#{lookup_path}?#{lookup_query}")
 	lookup_request = Net::HTTP::Get.new lookup_address.request_uri
@@ -63,7 +65,7 @@ if response.code == '200'
 
 		users.each do |account|
 			count += 1
-			puts "#{count}) #{account["name"]}: #{account["status"]["created_at"]}"
+			puts "#{count}) (#{account["id"]}) #{account["name"]}: #{account["status"]["created_at"]}"
 		end
 	else
 		puts "Expected a response from lookup of 200 but got #{response.code} instead"
