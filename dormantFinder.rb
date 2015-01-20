@@ -4,20 +4,20 @@ require 'active_support/core_ext'   # For comparing times
 require_relative 'tokens'
 
 # Method for finding dormant friends
- def find_old_friends(friends)
+def find_old_friends(friends)
   count = 0
 
- 	friends["users"].each do |friend|
+  friends["users"].each do |friend|
     count += 1
     puts "#{count}) #{friend["screen_name"]}: #{friend["status"]["created_at"]}"
 
     #if Time.parse(friend["status"]["created_at"]) < 1.day.ago
     #  puts "#{friend["screen_name"]}: #{friend["status"]["created_at"]}"
     #end
- 	end
+   end
 
   puts friends["next_cursor"]
- end
+end
 
 # Build request URL
 baseurl = "https://api.twitter.com"
