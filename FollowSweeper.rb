@@ -10,16 +10,20 @@ client = Twitter::REST::Client.new do |config|
   config.access_token_secret = MY_ACCESS_SECRET
 end
 
-friends = client.friends  # All teh friends
-count = 0
-oldcount = 0
-oldfriends = []
-FILENAME = "oldfriends.txt"
+
+FILENAME = "oldfriends.txt" # Name of fiile to store old friends
+friends = client.friends    # All teh friends
+count = 0                   # Count number of accounts read
+oldcount = 0                # Count numer of old friends
+oldfriends = []             # Array to hold screen_names
+
+# ONly create a new list of friends to unfollow 
+# if a list does not already exist
 
 if File.file?(FILENAME)
   File.open(FILENAME, "r").each_line do |line| 
     oldfriends << line 
-    oldPcount += 1
+    oldcount += 1
   end
 else
   outFile = File.new(FILENAME, "w")
@@ -34,7 +38,6 @@ else
         oldcount += 1
         puts "#{friend.screen_name}: #{friend.status.created_at}"
         outFile.puts "#{friend.screen_name}"
-        #oldfriends << friend.screen_name
       end
     else
       time = Time.new
@@ -43,7 +46,6 @@ else
       count = 0
     end
   end 
-
   outFile.close()
 end
 
