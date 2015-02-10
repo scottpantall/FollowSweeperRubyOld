@@ -15,5 +15,11 @@ Follow Sweeper is a command-line Ruby app that outputs a list of Twitter user na
 
 To use Follow Sweeper you need...
 * Twitter API keys in a local file in the same directory as followsweeper.rb named tokens.rb
+  * tokens.rb will initialize the following variables: 
+    * MY_CONSUMER_KEY
+    * MY_CONSUMER_SECRET
+    * MY_ACCESS_TOKEN
+    * MY_ACCESS_SECRET
 * Ruby environment
 * Approximately 2 hours for the app to get through 2000 friend accounts
+* After running followsweeper.rb, open the "oldfriends.txt" file to see a list of inactive accounts.
